@@ -15,7 +15,7 @@ To boot-up everything(spring-app, postgres db and elasticseatch instance) you ju
 ```bash
   docker-compose up
 ```
-
+*Give it a few seconds after the docker-compose command finishes, sometimes the elasticsearch instance takes a little bit longer to boot-up and that can show errors on the console. Afte a couple seconds the spring-app should automatically restart and start working properly*
 
 - Check the localhost:8080 for the spring application 
 - check the elasticsearch instance on localhost:9200
