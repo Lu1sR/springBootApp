@@ -11,20 +11,18 @@ It is necessary to have docker and docker-compose already set-up
   git clone https://github.com/Lu1sR/springBootApp.git
   cd springBootApp/
 ```
-To instantiate the postgresql database and the elastisearch node
+To boot-up everything(spring-app, postgres db and elasticseatch instance) you just need docker-compose
 ```bash
   docker-compose up
 ```
-Finally to boot-up the server move to the spring app and run it 
-```bash
-  cd springchallenge
-  ./mvnw spring-boot:run
-```
 
-Check the localhost:8080 for the spring application, check the elasticsearch instance on localhost:9200
+
+- Check the localhost:8080 for the spring application 
+- check the elasticsearch instance on localhost:9200
 
 ## Features
 The database should look like this:
+
 ![database table](./images/db.PNG)
 
 #### Check the strings in the database
