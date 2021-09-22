@@ -4,7 +4,6 @@ package com.example.springchallenge.challenge;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
-import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +22,7 @@ public class ChallengeController {
         this.challengeService = challengeService;
     }
 
+    // route that checks the number of allowed times and show the correct html page. 
     @GetMapping("/{name}")
     public ModelAndView redirectWithUsingRedirectPrefix(ModelMap model,HttpServletResponse response, @PathVariable String name) {
         Routes selectedString =  challengeService.getSelectedString(name);
@@ -30,7 +30,7 @@ public class ChallengeController {
         if(selectedString.getNumberCall() != selectedString.getMaxNumberCall()){
             if(!challengeService.updateString(selectedString.getId())) return new ModelAndView("redirect:/404.html", model);    
             response.addCookie(new Cookie("COOKIENAME", "123456"));
-            MDC.put("prueba", "valor de cookies");
+            
             return new ModelAndView("redirect:/%s".formatted(selectedString.getPage()), model);    
         }else{
             

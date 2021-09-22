@@ -8,6 +8,9 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
+/*
+ Class to parse the json into and object, it also serves as an index for elasticsearch
+*/
 @Document(indexName = "logindex")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class LogEntity {

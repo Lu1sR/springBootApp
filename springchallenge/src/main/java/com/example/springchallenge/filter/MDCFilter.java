@@ -15,6 +15,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+
+/*
+  Class that writes a request-id header to further improve traceability of requests.
+  It also include important information in the logs such as headers, http statys codes and parameters
+*/
 @Order(1)
 @Component
 public class MDCFilter implements Filter {

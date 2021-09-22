@@ -35,13 +35,14 @@ public class SpringchallengeApplication {
 		SpringApplication.run(SpringchallengeApplication.class, args);
 	}
 
-
-	@Scheduled(fixedDelay = 40000, initialDelay = 1000)
-	public void scheduleFixedRateWithInitialDelayTask() {
-
-		ObjectMapper objectMapper = new ObjectMapper();
-		
+	
+	@Scheduled(cron="0 5 * * * *") // method that executes in the 5th minute of every hour 
+	public void scheduleCronjobTask() {
+		System.out.println("\nCRONJOB STARTED\n");
+		ObjectMapper objectMapper = new ObjectMapper();		
 		List<LogEntity> httpLogs = new LinkedList<LogEntity>();
+
+
 		try(
 			FileReader reader = new FileReader("./logs/click.json");
 			BufferedReader bufferedReader = new BufferedReader(reader);
@@ -49,13 +50,12 @@ public class SpringchallengeApplication {
 		{
 			String currentLine; 
 			while((currentLine=bufferedReader.readLine()) != null) {
-                LogEntity logEntity = objectMapper.readValue(currentLine, LogEntity.class);
+                LogEntity logEntity = objectMapper.readValue(currentLine, LogEntity.class); // json to object
 				if(logEntity.getXRequestID() != null){
 					httpLogs.add(logEntity);
 				}                
             }
-			System.out.println("#####################################################################################################################"+httpLogs.size());
-
+			
 		} catch (JsonParseException e) {
 			
 			e.printStackTrace();
@@ -67,7 +67,7 @@ public class SpringchallengeApplication {
 			e.printStackTrace();
 		}
 		try {
-			logService.createLogIndexBulk(httpLogs);	
+			logService.createLogIndexBulk(httpLogs);	// saveAll elascticsearch repository implementation
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

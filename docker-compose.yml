@@ -10,10 +10,8 @@ services:
         ports:
           - '5437:5432'
         volumes:
-          - ./sql:/docker-entrypoint-initdb.d/
-          - ./data/postgres-data:/var/lib/postgresql
-          # copy the sql script to fill tables
-          #- ./sql/fill_tables.sql:/docker-entrypoint-initdb.d/fill_tables.sql
+          - ./sql:/docker-entrypoint-initdb.d/          
+
     elasticsearch:
         image: docker.elastic.co/elasticsearch/elasticsearch:7.10.0
         container_name: elasticsearch
